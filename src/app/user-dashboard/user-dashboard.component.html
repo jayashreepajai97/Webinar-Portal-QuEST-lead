@@ -1,0 +1,160 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header ">
+            <div class="navbar-header" (click)="navigate()">
+                <a class="navbar-brand logo"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="username">{{userName}}</div>
+            <div class="dropdownIcon " (click)="openDropdown()"></div>
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+            <div class="modal-dialog-logOut" role="document">
+                <div class="modal-content" style="left:250%;">
+                    <div class="modal-header border-0">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+                                class="ml-3" aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div>
+                        <div class="col-12 mb-2 ml-2 mr-2 mt-2"><img src="../../assets/profile_changePassword.svg" class="mr-2" />
+                            <span class="cursor-icon"routerLink="/dashboard/changePassword">Change Password</span></div>
+                            <div class="col-12 mb-3 ml-2 mr-2">
+                                <img src="../../assets/logout-icon.svg" class="mr-2" /><span  class="cursor-icon" routerLink="/login" (click)="logout()">Logout</span>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="background-layout">
+    <div class="row ml-3 mr-3">
+        <div class="col-6 mt-4">
+            <div class="card mat-elevation-z8 ">
+                <div class="col-12">
+                    <div class="row ml-5">
+                        <div class="mt-2"><img src="../../assets/greentickround.svg" />
+                        </div>
+                        <div class="col-10 mt-2 ml-2">
+                            <p class="font-content"> {{completedCount}} Videos</p>
+                            <p class="font-content">Webinar Training Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="card mat-elevation-z8">
+                <div class="col-12">
+                    <div class="row ml-5">
+                        <div class="mt-1"><img src="../../assets/calender.svg" />
+                        </div>
+                        <div class="col-10 mt-2 ml-2">
+                            <p class="font-content-second">{{dataSourceUser.dueDate}}</p>
+                            <p class="font-content-second">Account is valid upto</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ml-3 mt-3 mb-2 mr-2">
+        <div class="col-8 pl-4 pt-3 headerBar">Webinar
+            <span class="cirBtn">
+                <button class="btn btn-info btn-sm" id="countBtn">{{dataSourceCount}}</button>
+            </span>
+        </div>
+        <div class="col-4 mb-2">
+            <li class="ft-search-icon">
+                <input type="text" id="searchValue" class="search-bar-web" placeholder="Search"
+                    [(ngModel)]="searchText">
+                <img src="../../assets/Icon-ionic-ios-search.svg" />
+            </li>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card  mat-elevation-z8 ml-3 mr-3">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="mt-2">
+                        <tr>
+                            <th class="pl-5 pt-4" scope="col">NAME & DESCRIPTION <img
+                                    src="../../assets/Group3390.svg" /></th>
+                            <th class="px-3 pt-4" scope="col">Status <img src="../../assets/Group3390.svg" /></th>
+                            <th class="px-5 pt-4" scope="col">Action <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-4 pt-4" scope="col">VIDEO <img src="../../assets/Group3390.svg" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let element of dataSource   | filter:searchText | paginate: {itemsPerPage: 5, currentPage: p, totalItems: dataSourceCount}">
+                            <td class="pl-5">
+                                <p class="heading-name">{{element.webinarName}}</p>
+                                <p class="font-discription">{{element.description}}</p>
+                            </td>
+                            <td class="font-discription">{{element.enrollStatus | titlecase}}</td>
+                            <td><button class="btn btn-primary"
+                                    *ngIf="element.enrollStatus !== 'ENROLLED' && element.enrollStatus !== 'COMPLETED'"
+                                    (click)="enrollvideo(element,'ENROLLED',index)" title="Submit">ENROLL</button>
+                                <button class="btn btn-primary " *ngIf="element.enrollStatus === 'ENROLLED'"
+                                    title="Submit" (click)="completeStatus(element,'COMPLETED')">COMPLETE</button>
+                                <button class="btn btn-primary "
+                                    *ngIf="element.enrollStatus === 'COMPLETED' && element.enrollStatus !== 'ENROLLED' "
+                                    title="Submit" (click)="unMarkCompleteStatus(element,'ENROLLED')">UNMARK
+                                    COMPLETE</button>
+                            </td>
+                            <td> <img src="../../assets/videoIcon2.png" *ngIf="element.webinarAccess !== 'ENABLE'"
+                                    class="pointer-hover">
+                                <img src="../../assets/videoIcon.svg" *ngIf="element.webinarAccess === 'ENABLE'"
+                                    class="pointer-hovers" (click)="videoDetail(element) ">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!dataSource">
+                <div class="no-data">
+                    <img class="icon-big" src="../../assets/Icon-ionic-ios-search-big.svg" />
+                </div>
+                <div class="no-result-found1">No results found </div>
+                <div class="no-result-found2">Please try some other keyword</div>
+            </div>
+        </div>
+        <div class="paginator mt-3">
+            <pagination-controls class="trainee-pagination" previousLabel="Back" (pageChange)="p = $event">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayVideo}">
+    <div class="modal-dialog" style="max-width: 626px;" role="document">
+        <div class="modal-content" style="width:660px;">
+            <div class="modal-header border-0">
+                <div class="col-12 mt-4 ml-2 mr-2 mb-5">
+                    <div class="modal-title"><b>{{videodetailPopUp?.webinarName}}</b>
+                        <button type="button" class="close mr-4" aria-label="Close"
+                            (click)="onCloseHandledVideo()"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <video id="video-controls" controls poster="fa fa-play-circle" controlsList="nodownload" width="610" height="251"
+                        autoplay="autoplay" class="video-background-color  mt-4" type="video/mp4"
+                        src=".././assets/webinars/{{videodetailPopUp?.webinarUrl}}"></video>
+                    <div class="row  mt-2 ml-2">
+                        <span class="cirBtn" id="countBtn1" class="like-font">{{dataLikeCount}}</span> <i
+                            (click)="reviewVideoLike(data,'LIKE')" class="fa fa-thumbs-o-up mr-3"
+                            style="font-size:30px;"></i>
+                        <i class="fa fa-thumbs-o-down float " (click)="reviewVideoDisLike(data,'DISLIKE')"
+                            style="font-size:30px"></i> <span class="cirBtn"
+                            id="disLikecountBtn1">{{dataDisLikeCount}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

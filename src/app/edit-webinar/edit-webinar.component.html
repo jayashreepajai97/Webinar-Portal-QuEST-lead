@@ -1,0 +1,52 @@
+<div class="col-12 mt-5 mr-2 ">
+    <div class="col-12 header-font mb-4">Edit Webinar</div>
+    <div class="card  mr-5">
+        <div class="col-12 m-3">
+            <form [formGroup]='regForm' class="form-group-form" (ngSubmit)="uploadForm(regForm)" ngNativeValidate>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <div class="font-field mb-2">Webinar Name</div>
+                        <div>
+                            <input type="text" formControlName="webinarName" [(ngModel)]="WebinarName"
+                                class="form-control " maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <div class="font-field mb-2">Video</div>
+                        <div class="form-group">{{webinarUrlEdit}}
+                            <input type="file" formControlName="webinarUrl" [(ngModel)]="webinarUrl" (change)="onFileSelected($event)">
+                            <button type="button" class="btn btn-success" (click)="upload()">UPLOAD</button>
+                            <div class="progress form-group" *ngIf="progress > 0" style = "width: 55%">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-12">
+                        <div class="font-field mb-2">Description</div>
+                        <div><input type="text-area" formControlName="description" [(ngModel)]="webinarDescription"
+                                id="description" placeholder="Write Your Description Here" class="form-control"></div>
+                    </div>
+                </div>
+                <div class="btn-toolbar ml-3 mt-3">
+                    <div class="btn-group mr-3">
+                        <input type="submit" class="btn btn-primary" value="UPDATE" />
+                    </div>
+                    <div class="btn-group mr-3">
+                        <button type="button" class="btn btn-default border-primary" id="cancel-btn"
+                            routerLink="/dashboard/webinar">CANCEL</button>
+                    </div>
+                </div>
+                <div class="row py-2" *ngIf="showMsg">
+                    <div class="col-12 msg-align">
+                        <p class="alert alert-success">
+                            <strong>Updated Successfully!</strong>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

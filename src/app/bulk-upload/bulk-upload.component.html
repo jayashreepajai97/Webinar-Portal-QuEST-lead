@@ -1,0 +1,57 @@
+<div class="row mt-5 mr-2 mb-3 overflow-layout">
+  <div class="col-8 headerBar">Bulk Upload
+  </div>
+  <div class="col-12">
+    <div class="card mt-3 ">
+      <div class="browserlink m-3 "><b>Drop your file here or&nbsp;</b>
+        <input type="file" (change)="onFileSelected($event)">
+        <div class="CsvSizeInfo mb-4"> Upload csv file upto 10mb</div>
+      </div>
+      <div class="row ml-2 mr-2 mt-3">
+        <div class="col-6">
+          <div class="mb-2"><b> Successfully Added</b></div>
+          <div class="height-table">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="mt-2">
+                  <tr>
+                    <th scope="col">Email ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of created; let i=index;">
+                    <td>{{item}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-2"><b>Failed to Add</b></div>
+          <div class="height-table">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="mt-2">
+                  <tr>
+                    <th scope="col">Email ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of failed">
+                    <td>{{item}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="button" class="uploadButton" (click)="OnUpload()">UPLOAD</button>
+      <button type="button" class="uploadButton2 btn-default border-primary " routerLink="/dashboard/trainee">
+        CANCEL</button>
+    </div>
+  </div>
+</div>

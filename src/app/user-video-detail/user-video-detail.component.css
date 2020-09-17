@@ -1,0 +1,231 @@
+mat-sidenav {
+  width: 250px;
+  height: 650px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+mat-sidenav-container {
+  background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.navbar-header {
+  cursor: pointer;
+}
+mat-sidenav-content {
+  overflow-y: hidden;
+}
+a:hover {
+  color: black !important;
+  border: 0.1px solid;
+}
+
+.mat-list-item {
+  display: flex !important;
+}
+li {
+  list-style-type: none;
+  padding: 12px 0px 7px  20px;
+}
+.logo {
+  width: 70px;
+  height: 60px;
+  background: transparent url("src\assets\Image 6.png") 0% 0% no-repeat padding-box;
+  opacity: 1; 
+ }
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+mat-toolbar {
+  width: 100%;
+  height: 50px;
+  background: var(--unnamed-color-127fba) 0% 0% no-repeat padding-box;
+  background: #127FBA 0% 0% no-repeat padding-box;
+  opacity: 1;
+  z-index: 1;
+}
+.NotificationIcon {
+  width: 40px;
+  height: 49px;
+  background: transparent url("src\assets\notification.svg") 0% 0% no-repeat padding-box;
+  opacity: 1;
+  margin-top: 15px;
+  margin-left: 780px;
+}
+.btn {
+  top: 20px;
+  left: 0px;
+  width: 164px;
+  height: 40px;
+  background: var(--unnamed-color-f7fbfd) 0% 0% no-repeat;
+  background: #f7fbfd 0% 0% no-repeat padding-box;
+  border: 1px solid #cfe5f1;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.dropdownIcon {
+  top: 29px;
+  width: 12px;
+  height: 6px;
+  background: transparent url("src\assets\Icon awesome-chevron-down.svg") 0% 0% no-repeat padding-box;
+  opacity: 1;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.name-font {
+  font-size: 14px;
+  color: #ffffff;
+  padding-left: 4px;
+}
+::ng-deep .mat-drawer-content {
+  background-color: #f7fbfd;
+}
+::ng-deep .mat-sidenav-container > .mat-drawer {
+  z-index: 0 !important;
+}
+.ft-search-icon {
+  float: right;
+  margin: 22px 36px 0px 0px;
+  position: relative;
+  border-radius: 15px;
+  font-size: 14px;
+}
+
+.ft-search-icon input {
+  border: 1px solid #cccccc;
+  line-height: 30px;
+  background-color: #fff;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 13px;
+  padding-left: 7px;
+}
+.ft-search-icon img {
+  position: absolute;
+  top: 10px;
+  right: 11px;
+}
+.table_font {
+  font-size: 15px;
+}
+.active {
+  background-color: #cfe5f1;
+}
+.fa {
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: #127fba;
+}
+.mat-drawer-content {
+  height: 100% !important;
+}
+.layout-scrolling {
+  overflow-x: hidden;
+}
+video[poster] {
+  object-fit: cover;
+}
+#style-3::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+#style-3::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+.video-size-fix{
+  background-size: contain;
+}
+.modal-content {
+  width: 40%;
+  height: auto;
+  position: absolute;
+  margin-top: 9px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin-top: 9px;
+  left: 100%;
+
+}
+.modal-header {
+  padding: 0px 0px 0px 0px;
+}
+
+.modal-header .close {
+  margin: 6px 0px -14px 161px;;
+}
+.modal-header button :hover, button :visited, button :focus {
+  border: none;
+  outline: 0;
+}
+
+.close {
+  padding: 0px 0px 0px 0px;
+  font-size: 16px;
+}
+
+.mat-list-base .mat-list-item{
+  width: 100% !important;
+}
+.navbar {
+  background-color: #127FBA;
+  padding-bottom: 0px;
+}
+.video-box-alig{
+  text-align: center;
+}
+.layout-background{
+ color: rebeccapurple;
+}
+#countBtn {
+  border-radius: 50%;
+  background-color: #127FBA;
+  color:white;
+  height: 30px;
+  width: 30px;
+  margin: 0px 5px 0px 0px;
+  padding: 7px;
+}
+#disLikecountBtn{
+  border-radius: 50%;
+  background-color: #127FBA;
+  color:white;
+  height: 30px;
+  width: 30px;
+  margin: 0px 0px 0px 5px;
+  padding: 7px;                        
+}
+.font-field{
+  font-size: 17px;
+}
+.video-center{
+  text-align: center;
+}
+.video-background-color{
+  background-color:black
+}
+.username{
+  color: #ffffff;
+  margin: -8px 13px 0px 0px;
+}

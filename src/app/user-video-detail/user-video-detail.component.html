@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header" (click)="navigate()">
+            <div class="navbar-header">
+                <a class="navbar-brand logo"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="username">{{userName}}</div>
+            <div class="dropdownIcon " (click)="openDropdown()"></div> 
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+                                class="ml-3" aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div>
+                        <li><img src="../../assets/profile_changePassword.svg" class="mr-2" /><span class="cursor-icon"
+                                routerLink="/dashboard/changePassword">Change Password</span></li>
+                        <li id="logout"> <img src="../../assets/logout-icon.svg" class="mr-2" /><span
+                                class="cursor-icon" routerLink="/login" (click)="logout()">Logout</span></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="col-12 mt-4">
+        <p class="font-field "><b>Webinar Title : </b>{{data['webinarName']}}</p>
+    </div>
+    <div class="col-12  mt-3">
+        <p class="font-field "><b>Description :</b> {{data['description']}}</p>
+    </div>
+</div>
+<div>
+    <div class="col-12 d-flex justify-content-center">
+        <div>
+            <video controls poster="fa fa-play-circle" controlsList="nodownload" width="640" height="420"
+                class="video-background-color" src=".././assets/{{data['webinarUrl']}}" type="video/mp4"
+                autoplay="autoplay">
+            </video>
+            <div class="col-12">
+                <span class="cirBtn" id="countBtn" class="like-font">{{dataLikeCount}}</span> <i
+                    (click)="reviewVideoLike(data,'LIKE')" class="fa fa-thumbs-o-up mr-3" style="font-size:30px;"></i>
+                <i (click)="reviewVideoDisLike(data,'DISLIKE')" class="fa fa-thumbs-o-down float "
+                    style="font-size:30px"></i> <span class="cirBtn" id="disLikecountBtn">{{dataDisLikeCount}}</span>
+            </div>
+        </div>
+    </div>
+</div>

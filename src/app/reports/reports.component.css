@@ -1,0 +1,154 @@
+li {
+    list-style-type: none;
+}
+
+ul li {
+    margin: 5px 10px 0px 35px;
+    font-size: 18px;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+}
+
+.tab {
+    top: 20px;
+    left: 18px;
+    width: auto;
+    height: auto;
+    background: var(--unnamed-color-f7fbfd) 0% 0% no-repeat;
+    font-size:18px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+}
+.tab.active {
+    top: 20px;
+    left: 18px;
+    width: auto;
+    height: auto;
+    background: var(--unnamed-color-f7fbfd) 0% 0% no-repeat;
+    background: #f7fbfd 0% 0% no-repeat padding-box;
+    border-bottom:2px solid #127FBA;
+    font-weight: 500;
+    font-size:18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+body {
+    background-color: rgb(162, 80, 255);
+}
+
+#countBtn {
+    border-radius: 15px;
+    background-color: #127FBA;
+    height: 25px;
+    width: 25px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.mat-elevation-z8-not-data {
+    height: 60px;
+}
+
+.mat-elevation-z8-data {
+    height: 60px;
+}
+.no-data {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+  
+.paginator {
+    font-size: 14px;
+}
+  
+.paginator /deep/ .ngx-pagination .current {
+    border-radius: 12px;
+    font-size: 12px;
+}
+  
+.paginator /deep/ .ngx-pagination a:hover, .ngx-pagination button:hover {
+    border-radius: 12px;
+}
+  
+.paginator /deep/ .ngx-pagination a:focus, .ngx-pagination button:focus {
+    outline: none;
+    background: #d4d4d4;
+}
+
+.download-span {
+    color: #127FBA;
+    cursor: pointer;
+}
+
+.no-result-found1 {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+}
+  
+.no-result-found2 {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+}
+  
+.no-result-found {
+    display: flex;
+    justify-content: center;
+}
+
+.headerBar{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.card{
+    border-radius: 1.25rem;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #127FBA;
+}
+
+.ft-search-icon {
+    position: relative;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.search-bar-web {
+    font-family: 'Helvetica', FontAwesome, sans-serif;
+    border-radius: 15px;
+    padding: 1px 0px 0px 13px;
+}
+
+.ft-search-icon input {
+    border: 1px solid #cccccc;
+    line-height: 30px;
+    background-color: #fff;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ft-search-icon img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.date-input {
+    border-radius: 15px;
+    border: 1px solid #cccccc;
+    width: 97%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 14px;
+    padding-left: 14px;
+}
+
+

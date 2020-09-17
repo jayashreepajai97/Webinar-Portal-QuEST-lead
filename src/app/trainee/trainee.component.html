@@ -1,0 +1,181 @@
+<div class="row mr-2 mt-4 overflow-layout">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-5">
+                <ul class="nav">
+                    <li (click)="set(0)" (click)="tab = 'User'" class=" {{(tab == 'User') ? 'active' : '' }} tab  mr-4">
+                        <a class="mr-2">Trainee</a><span class="cirBtn">
+                            <button class="btn btn-info btn-sm" id="countBtn">{{dataSourceCount}}</button>
+                        </span></li>
+                    <li (click)="set(1)" (click)="tab = 'Trainee'" class=" {{(tab == 'Trainee') ? 'active' : '' }} tab">
+                        <a class="mr-2">Admin</a><span class="cirBtn">
+                            <button class="btn btn-info btn-sm" id="countBtn">{{dataSourceAdminCount}}</button>
+                        </span></li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <div class="ft-search-icon">
+                    <input type="text" id="searchValue" class="search-bar-web" placeholder="Search"
+                        [(ngModel)]="searchText">
+                    <img src="../../assets/Icon-ionic-ios-search.svg" />
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary btn-sm" id="catBtn" (click)="BulkUploadFunc()"
+                    routerLink="bulkUpload">BULK
+                    UPLOAD</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary btn-sm" id="catBtn" routerLink="/dashboard/addTrainee">ADD
+                    USER</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <div class="modal-title">Delete User</div>
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body border-0">
+                    <p>Are you sure that you want to delete the selected user?</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-primary" id="delete-btn"
+                        (click)="deleteTrainee(deleteId)">DELETE</button>
+                    <button type="button" class="btn btn-default" id="cancel-btn"
+                        (click)="onCloseHandled()">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 " *ngIf="userCounter">
+        <div class="card mat-elevation-z8 mt-4">
+            <div class="table-responsive" *ngIf="dataSourceUser">
+                <table class="table">
+                    <thead class="mt-2">
+                        <tr>
+                            <th class="pl-5">USER NAME <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-5">USER EMAIL ID <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-5">DUE DATE <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-5">ACTION <img src="../../assets/Group3390.svg" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="mat-elevation-z8-data" 
+                            *ngFor="let element of dataSourceUser | filter:searchText |  paginate: {itemsPerPage: 8, currentPage: p, totalItems: dataSourceCount}">
+                            <td class="pl-5 "> {{element.name}}
+                            </td>
+                            <td class="pl-5 "> {{element.username}}
+                            </td>
+                            <td class="pl-5 ">{{element.dueDate}}
+                            </td>
+                            <td class="pl-5 "> <a (click)="editTrainee(element)" class="icon-grid"><img
+                                        class="icon-mark" src="../../assets/Icon-feather-edit.svg" /></a>
+                                <a class="icon-grid"><img class="icon-mark"
+                                        src="../../assets/Icon-weather-refresh.svg" /></a>
+                                <span class="icon-grid" (click)="openModal(element.id)"><img class="icon-mark"
+                                        src="../../assets/Icon-feather-trash-2.svg" /></span>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!dataSourceUser">
+                <table class="mat-elevation-z8-not-data">
+                    <th class="pl-5">USER NAME <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th class="pl-5">USER EMAIL ID <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th class="pl-5">DUE DATE <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th class="pl-5">WEBINAR <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th class="pl-5">ACTION</th>
+                </table>
+                <div class="no-data">
+                    <img class="icon-big" src="../../assets/Icon-ionic-ios-search-big.svg" />
+                </div>
+                <div class="no-result-found1">No data to show </div>
+                <div class="no-result-found2">Add user in single or can do bulk upload</div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-4 mt-3">
+                <span class="download-span" (click)="downloadFunc()">
+                    <a class="download-icon"><img src="../../assets/download-icon.svg" /></a><u>Download .csv file</u>
+                </span>
+            </div>
+            <div class="col-8 paginator mt-3">
+                <pagination-controls class="trainee-pagination" previousLabel="Back" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12" *ngIf="!userCounter">
+        <div class="card mat-elevation-z8 mt-4">
+            <div class="table-responsive" *ngIf="dataSourceAdmin">
+                <table class="table">
+                    <thead class="mt-2">
+                        <tr>
+                            <th class="pl-5">USER NAME <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-5">USER EMAIL ID <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-5">DUE DATE <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-5">ACTION <img src="../../assets/Group3390.svg" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="mat-elevation-z8-data" 
+                            *ngFor="let element of dataSourceAdmin | filter:searchText |  paginate: {itemsPerPage: 8, currentPage: p, totalItems: dataSourceCount}">
+                            <td class="pl-5 "> {{element.name}}
+                            </td>
+                            <td class="pl-5 "> {{element.username}}
+                            </td>
+                            <td class="pl-5 ">{{element.dueDate}}
+                            </td>
+                            <td class="pl-5 "> <a (click)="editTrainee(element)" class="icon-grid"><img
+                                        class="icon-mark" src="../../assets/Icon-feather-edit.svg" /></a>
+                                <a class="icon-grid"><img class="icon-mark"
+                                        src="../../assets/Icon-weather-refresh.svg" /></a>
+                                <span class="icon-grid" (click)="openModal(element.id)"><img class="icon-mark"
+                                        src="../../assets/Icon-feather-trash-2.svg" /></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!dataSourceAdmin">
+                <table class="mat-elevation-z8-not-data">
+                    <th>USER NAME <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th>USER EMAIL ID <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th>DUE DATE <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th>WEBINAR <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th>ACTION</th>
+                </table>
+                <div class="no-data">
+                    <img class="icon-big" src="../../assets/Icon-ionic-ios-search-big.svg" />
+                </div>
+                <div class="no-result-found1">No data to show </div>
+                <div class="no-result-found2">Add user in single or can do bulk upload</div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-4 mt-3">
+                <span class="download-span" (click)="downloadAdminData()">
+                    <a class="download-icon"><img src="../../assets/download-icon.svg" /></a><u>Download .csv file</u>
+                </span>
+            </div>
+            <div class="col-8 paginator mt-3">
+                <pagination-controls class="trainee-pagination" previousLabel="Back" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+        </div>
+        <div class="row py-2" *ngIf="showMsg">
+            <div class="col-6 msg-align">
+                <p class="alert alert-success">
+                    <strong>Deleted Successfully!</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

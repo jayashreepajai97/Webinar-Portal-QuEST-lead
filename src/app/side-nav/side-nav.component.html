@@ -1,0 +1,97 @@
+<div class="row mr-2">
+    <div class="container mt-3" style="height:100vh;">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="mb-2 mb-2">
+                        <div class="center-icon mb-2 mt-2"><img src="../../assets/dashboard-user-icon.svg" /></div>
+                        <div class="font-card-filed mb-2 mt-2">{{totalTraineeCount}} Trainee</div>
+                        <div class="font-card-filed-second">added in the system</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="mb-2 mt-2">
+                        <div class="center-icon mb-2 mt-2"><img src="../../assets/dashborad-webinar-icon.svg" /></div>
+                        <div class="font-card-filed mb-2 mt-2">{{totalWebinarCount}} Webinar</div>
+                        <div class="font-card-filed-second">videos uploaded in the system</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- First bar graph -->
+        <div class="card mt-4 mb-4">
+            <div class="row m-3">
+                <div class="col-8 font-bar-header">No. of trainees added</div>
+                <!-- Add Deopdown -->
+                <div class="col-4 dropdown ml-5">
+                    <div class="form-group">
+                        <div> 
+                            <select placeholder="Select Year
+                            " #selectYear class="form-control" id="select-year"
+                                [ngModel]="selectedYear" (ngModelChange)="setYear(selectYear.value)"
+                                [ngModelOptions]="{standalone: true}">
+                                <option selected value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="col-12">
+                    <div class="chart-container" *ngIf="totalTraineeCount">
+                        <ng-container *ngIf="chartOptionsTrainee">
+                            <highcharts-chart [Highcharts]="highcharts" [options]="chartOptionsTrainee" >
+                            </highcharts-chart>
+                        </ng-container>
+                    </div>
+                    <div class="row py-2" *ngIf="!totalTraineeCount">
+                        <div class="col-12" style="text-align: center;">
+                            <p class="alert alert-success">
+                                <strong>No User Exist for {{selectedYear}} ...!</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Second bar graph -->
+        <div class="card mt-4 ">
+            <div class="row m-3">
+                <div class="col-8 font-bar-header">No. of Webinars added</div>
+                       <!-- Add Deopdown -->
+                <div class="col-4 dropdown ml-5">
+                    <div class="form-group">
+                        <div> 
+                            <select placeholder="Select Year" #selectWebinarYear class="form-control" id="select-year"
+                                [ngModel]="selectedYear" (ngModelChange)="setWebinarYear(selectWebinarYear.value)"
+                                [ngModelOptions]="{standalone: true}">
+                                <option selected value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="col-12">
+                    <div class="chart-container" *ngIf="totalWebinarCount">
+                        <ng-container *ngIf="chartOptionsWebinar">
+                            <highcharts-chart [Highcharts]="highcharts" [options]="chartOptionsWebinar">
+                            </highcharts-chart>
+                        </ng-container>
+                    </div>
+                    <div class="row py-2" *ngIf="!totalWebinarCount">
+                        <div class="col-12" style="text-align: center;">
+                            <p class="alert alert-success">
+                                <strong>No Webinar Exist for {{selectedYear}} ...!</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

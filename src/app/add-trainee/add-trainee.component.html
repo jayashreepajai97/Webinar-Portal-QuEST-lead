@@ -1,0 +1,77 @@
+<div class="row mr-2">
+    <div class="container">
+        <div class="header-font mt-5 mb-3">Add User</div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <form [formGroup]='regForm' class="form-group-form" (ngSubmit)="uploadForm(regForm)" ngNativeValidate>
+                <div class="row m-3">
+                    <div class="form-group col-6">
+                        <div class="mb-2 font-field ">Name
+                        </div>
+                        <div>
+                            <input type="text" formControlName="name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <div class="mb-2 font-field ">User Name (Email)</div>
+                        <div>
+                            <input type="email" formControlName="username" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-3">
+                    <div class="form-group col-6 ">
+                        <div class="font-field  mb-2">Due Date</div>
+                        <div>
+                            <input type="date" formControlName="dueDate" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-6 ">
+                        <div class="font-field ">Password</div>
+                        <div>
+                            <input type="password" formControlName="password" class="form-control" maxlength="20" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-3">
+                    
+                    <div class="form-group col-6 ">
+                        <div class="mb-2 font-field ">Role</div>
+                        <div> <select placeholder="Select role" #selectRole class="form-control" id="select-role"
+                                [ngModel]="selectedRole" (ngModelChange)="setRole(selectRole.value)"
+                                [ngModelOptions]="{standalone: true}">
+                                <option value="User">User</option>
+                                <option value="Admin">Admin</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-toolbar m-3">
+                    <div class="btn-group mr-3">
+                        <input type="submit" class="btn btn-primary" value="ADD" />
+                    </div>
+                    <div class="btn-group mr-3">
+                        <button type="button" class="btn btn-default border-primary" id="cancel-btn"
+                            routerLink="/dashboard/trainee">CANCEL</button>
+                    </div>
+                </div>
+                <div class="row py-2" *ngIf="showMsgAdd">
+                    <div class="col-6 msg-align">
+                        <p class="alert alert-success">
+                            <strong>Added Successfully!</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row py-2" *ngIf="showMsg">
+                    <div class="col-12" style="text-align: center;">
+                        <p class="alert alert-danger">
+                            <strong>UserID Already Exists...!</strong>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

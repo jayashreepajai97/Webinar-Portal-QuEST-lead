@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-primary {
+    padding-bottom: 9px;
+    padding-top:9px;
+    padding-left: 16px;
+    padding-right: 17px;
+}
+
+.overlay {
+    width: 100vw - 16.5vw;
+    /* border-bottom: 1px solid; */
+    margin-left: -5px;
+    margin-top: 30px;
+}
+
+.container {
+    margin: 0px 0px 0px 170px;
+    font-size: 20px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;;
+    height: 12%;
+    /* font-weight: bold;
+    border-bottom: 1px solid;     */
+}

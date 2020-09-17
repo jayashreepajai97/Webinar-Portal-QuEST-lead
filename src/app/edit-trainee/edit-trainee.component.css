@@ -1,0 +1,36 @@
+.form-control {
+    border-radius: 22px;
+    width: 84%;
+}
+
+#description {
+    width: 870px;
+    height: 70px;
+    border-radius: 16px;
+}
+
+.btn {
+    border-radius: 15px;
+    width: 88px;
+    height: 92%;
+    font-size: 14px;
+}
+.header-font {
+    font-size: 20px;
+}
+.card {
+    border-radius: 1.25rem;
+}
+.card {
+    border-radius: 1.25rem;
+}
+.font-field {
+    font-size: 14px;
+    font-weight: 500;
+}
+.btn-default {
+    columns: #127FBA;
+}
+.msg-align{
+    text-align: center;
+}

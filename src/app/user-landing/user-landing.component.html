@@ -1,0 +1,103 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<mat-toolbar>
+    <div class="logo">
+    </div>
+</mat-toolbar>
+<div style="background-color: #F7FBFD;">
+    <div class="row ml-3 mr-3">
+        <div class="col-6 mt-4">
+            <div class="card mat-elevation-z8 ">
+                <div class="col-12">
+                    <div class="row ml-3">
+                        <div class="mt-2"><img src="../../assets/greentickround.svg" />
+                        </div>
+                        <div class="col-10 mt-2 ml-2">
+                            <p class="font-content"> 00 Videos</p>
+                            <p class="font-content">Webinar Training Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="card mat-elevation-z8">
+                <div class="col-12">
+                    <div class="row ml-3">
+                        <div class="mt-2"><img src="../../assets/calender.svg" />
+                        </div>
+                        <div class="col-10 mt-2 ml-2">
+                            <p class="font-content-second">30 Oct 2020</p>
+                            <p class="font-content-second">Account is valid upto</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ml-3 mt-5 mb-2 mr-2">
+        <div class="col-8 pl-4 pt-3 headerBar">Webinar
+            <span class="cirBtn">
+                <button class="btn btn-info btn-sm" id="countBtn">{{dataSourceCount}}</button>
+            </span>
+        </div>
+        <div class="col-4 mb-2">
+            <li class="ft-search-icon">
+                <form>
+                    <input type="text" id="searchValue" class="search-bar-web" placeholder="Search">
+                    <img src="../../assets/Icon-ionic-ios-search.svg" />
+                </form>
+            </li>
+
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card  mat-elevation-z8 ml-3 mr-3">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="mt-2">
+                        <tr>
+                            <th class="pl-5 pt-4" scope="col">NAME & DESCRIPTION <img
+                                    src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-3 pt-4" scope="col">DUE DATE <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pt-4" scope="col">STATUS <img src="../../assets/Group3390.svg" /></th>
+                            <th class="px-4 pt-4" scope="col">ACTION <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-4 pt-4" scope="col">VIDEO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let element of dataSource | paginate: {itemsPerPage: 5, currentPage: p, totalItems: dataSource.length}">
+                            <td class="pl-5">
+                                <p style="font-weight: 600;">{{element.webinarName}}</p>
+                                <p style="font-size: 11px;">{{element.description}}</p>
+                            </td>
+                            <td>10-Nov-2020</td>
+                            <td>{{element.status}}</td>
+                            <td> <button class="btn btn-primary" title="Submit">LUNCH VIDEO</button></td>
+                            <td><img src="../../assets/videoIcon.svg" (click)="videoDetail(element)"
+                                    style="cursor: pointer;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div *ngIf="!dataSource">
+                <table class="mat-elevation-z8-not-data">
+                    <th> VIDEO <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th>Webinar <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th> DUE DATE <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th>ACTION</th>
+                </table>
+                <div class="no-data">
+                    <img class="icon-big" src="../../assets/Icon-ionic-ios-search-big.svg" />
+                </div>
+                <div class="no-result-found1">No results found </div>
+                <div class="no-result-found2">Please try some other keyword</div>
+            </div>
+        </div>
+        <div class="paginator mt-3">
+            <pagination-controls class="trainee-pagination" previousLabel="Back" (pageChange)="p = $event">
+            </pagination-controls>
+        </div>
+    </div>
+</div>

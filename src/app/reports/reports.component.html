@@ -1,0 +1,146 @@
+<div class="row mr-2 mt-4 overflow-layout">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-6">
+                        <div (click)="set(0)" (click)="tab = 'User'" class=" {{(tab == 'User') ? 'active' : '' }} tab ">
+                            <a class="mr-2">Login History</a><span class="cirBtn">
+                                <button class="btn btn-info btn-sm" id="countBtn">{{dataSourceCountUser}}</button>
+                            </span></div>
+                    </div>
+                    <div class="col-6">
+                        <div (click)="set(1)" (click)="tab = 'Trainee'" class=" {{(tab == 'Trainee') ? 'active' : '' }} tab">
+                            <a class="mr-2">Webinar Status History</a><span class="cirBtn">
+                                <button class="btn btn-info btn-sm" id="countBtn">{{dataSourceCountWebinar}}</button>
+                            </span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 ">
+                <div class="ft-search-icon">
+                    <input type="text" id="searchValue" class="search-bar-web" placeholder="Search"
+                        [(ngModel)]="searchText">
+                    <img src="../../assets/Icon-ionic-ios-search.svg" />
+                </div>
+            </div>
+            <div class="col-2 ">
+                <div class="form-group">
+                    <div> 
+                        <input type="text" class="date-input" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Select Start Date" #selectFromDate [ngModel]="selectedFromDate" (ngModelChange)="setFromDate(selectFromDate.value)" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <div> 
+                        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="date-input" placeholder="Select End Date" #selectEndDate [ngModel]="selectedEndDate" (ngModelChange)="setEndDate(selectEndDate.value)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 " *ngIf="userCounter">
+        <div class="card mat-elevation-z8 mt-4">
+            <div class="table-responsive" *ngIf="dataSourceUser">
+                <table class="table">
+                    <thead class="mt-2">
+                        <tr>
+                            <th class="pl-5">USER NAME <img src="../../assets/Group3390.svg" /></th>
+                            <th class="pl-5" >LOGIN DATE AND TIME<img src="../../assets/Group3390.svg" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="mat-elevation-z8-data" 
+                            *ngFor="let element of dataSourceUser | filter:searchText |  paginate: {itemsPerPage: 8, currentPage: p, totalItems: dataSourceCountUser}">
+                            <td class="pl-5 "> {{element.name}}
+                            </td>
+                            <td class="pl-5 "> {{element.loginTs|date:'full'}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!dataSourceUser">
+                <table class="mat-elevation-z8-not-data">
+                    <th class="pl-5"> USER NAME <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th class="pl-5" > LOGIN DATE AND TIME <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                </table>
+                <div class="no-data">
+                    <img class="icon-big" src="../../assets/Icon-ionic-ios-search-big.svg" />
+                </div>
+                <div class="no-result-found1">No data to show </div>
+                <div class="no-result-found2">Add user in single or can do bulk upload</div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-4 mt-3">
+                <span class="download-span" (click)="downloadFuncLoginHistory()">
+                    <a class="download-icon"><img src="../../assets/download-icon.svg" /></a><u>Download .csv file</u>
+                </span>
+            </div>
+            <div class="col-8 paginator mt-3">
+                <pagination-controls class="trainee-pagination" previousLabel="Back" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12" *ngIf="!userCounter">
+        <div class="card mat-elevation-z8 mt-4">
+            <div class="table-responsive" *ngIf="dataSourceWebinar">
+                <table class="table">
+                    <thead class="mt-2">
+                        <tr>
+                            <th >NAME <img src="../../assets/Group3390.svg" /></th>
+                            <th >WEBINAR NAME <img src="../../assets/Group3390.svg" /></th>
+                            <th >STATUS <img src="../../assets/Group3390.svg" /></th>
+                            <th >ENROLL DATE AND TIME <img src="../../assets/Group3390.svg" /></th>
+                            <th >COMPLETION DATE AND TIME <img src="../../assets/Group3390.svg" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="mat-elevation-z8-data" 
+                            *ngFor="let element of dataSourceWebinar | filter:searchText |  paginate: {itemsPerPage: 8, currentPage: p, totalItems: dataSourceCountWebinar}">
+                            <td > {{element.traineeName}}
+                            </td>
+                            <td > {{element.webinarName}}
+                            </td>
+                            <td >{{element.status}}
+                            </td>
+                            <td >{{element.enrollTs|date:'full'}}
+                            </td>
+                            <td >{{element.completeTs|date:'full'}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!dataSourceWebinar">
+                <table class="mat-elevation-z8-not-data">
+                    <th class="pl-5">NAME <img src="../../assets/Group3390.svg" /></th>
+                    <th class="pl-5">WEBINAR NAME <img src="../../assets/Group3390.svg" /></th>
+                    <th class="pl-5">STATUS <img src="../../assets/Group3390.svg" /></th>
+                    <th class="pl-5">ENROLL DATE AND TIME <img src="../../assets/Group3390.svg" /></th>
+                    <th class="pl-5">COMPLETION DATE AND TIME <img src="../../assets/Group3390.svg" /></th>
+                </table>
+                <div class="no-data">
+                    <img class="icon-big" src="../../assets/Icon-ionic-ios-search-big.svg" />
+                </div>
+                <div class="no-result-found1">No data to show </div>
+                <div class="no-result-found2">Add user in single or can do bulk upload</div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-4 mt-3">
+                <span class="download-span" (click)="downloadWebinarStatusHistory()">
+                    <a class="download-icon"><img src="../../assets/download-icon.svg" /></a><u>Download .csv file</u>
+                </span>
+            </div>
+            <div class="col-8 paginator mt-3">
+                <pagination-controls class="trainee-pagination" previousLabel="Back" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

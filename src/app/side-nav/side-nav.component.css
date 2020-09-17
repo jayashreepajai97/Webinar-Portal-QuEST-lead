@@ -1,0 +1,25 @@
+.center-icon{
+  text-align: center;
+}
+.font-card-filed{
+  text-align: center;
+  font-size:20px
+}
+.font-card-filed-second{
+  text-align: center;
+  font-size:15px
+}
+.font-bar-header{
+  font-size: 18px;
+}
+.card {
+  border-radius:10px;
+}
+
+#select-year {
+  border-radius: 22px;
+}
+
+.dropdown {
+  max-width: 25%;
+}

@@ -1,0 +1,120 @@
+<div class="row mr-2 overflow-layout">
+    <div class="container mb-3">
+        <div class="row mt-5 ">
+            <div class="col-8 headerBar">Webinar
+                <span class="cirBtn">
+                    <button class="btn btn-info btn-sm" id="countBtn">{{dataSourceCount}}</button>
+                </span>
+            </div>
+            <div class="col-2 ">
+                <div class="ft-search-icon">
+                    <input type="text" id="searchValue" class="search-bar-web" placeholder="Search"
+                        [(ngModel)]="searchText">
+                    <img src="../../assets/Icon-ionic-ios-search.svg" />
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary btn-sm" id="catBtn" routerLink="/dashboard/add-webinar">ADD WEBINAR</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <div class="modal-title">Delete Webinar</div>
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body border-0">
+                    <p>Are you sure that you want to delete the selected Webinar?</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-primary" id="delete-btn"
+                        (click)="deleteWebinar(deleteId)">DELETE</button>
+                    <button type="button" class="btn btn-default" id="cancel-btn" (click)="onCloseHandled()">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card mat-elevation-z8">
+            <div *ngIf="dataSource" class="table-responsive">
+                <table class="table">
+                    <thead class="mt-2">
+                        <tr>
+                            <th class="pl-5">VIDEO</th>
+                            <th>WEBINAR AND DESCRIPTION<img src="../../assets/Group3390.svg" /></th>
+                            <th>ACTION <img src="../../assets/Group3390.svg" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let element of dataSource | filter:searchText | paginate: {itemsPerPage: 5, currentPage: p, totalItems: dataSourceCount}">
+                            <td class="pl-5 "> <img src="../../assets/videoIcon.svg" 
+                                class="pointer-video-icon" (click)="videoDetail(element) "></td>
+                            <td class="pl-3">
+                                <p class="heading-name">{{element.webinarName}}</p>
+                                <p class="font-discription">{{element.description}}</p>
+                            </td>
+                            <td> <a (click)="editWebinar(element)" class="icon-grid"><img class="icon-mark"
+                                        src="../../assets/Icon-feather-edit.svg" /></a>
+                                <a class="icon-grid"><img class="icon-mark"
+                                        src="../../assets/Icon-weather-refresh.svg" /></a>
+                                <span class="icon-grid" (click)="openModal(element.id)"><img class="icon-mark"
+                                        src="../../assets/Icon-feather-trash-2.svg" /></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!dataSource">
+                <table class="mat-elevation-z8-not-data">
+                    <th> VIDEO <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th>WEBINAR AND DESCRIPTION <a class="header-icon"><img src="../../assets/Group3390.svg" /></a></th>
+                    <th>ACTION</th>
+                </table>
+                <div class="no-data">
+                    <img class="icon-big" src="../../assets/Icon-ionic-ios-search-big.svg" />
+                </div>
+                <div class="no-result-found1">No data to show </div>
+                <div class="no-result-found2">Add user in single or can do bulk upload</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mt-3">
+                <span class="download-span" (click)="downloadFunc()">
+                    <a class="download-icon"><img src="../../assets/download-icon.svg" /></a><u>Download .csv file</u>
+                </span>
+            </div>
+            <div class="col-8 paginator mt-3">
+                <pagination-controls class="trainee-pagination" previousLabel="Back" (pageChange)="p = $event">
+                </pagination-controls>
+            </div>
+        </div>
+        <div class="row py-2" *ngIf="showMsg">  
+            <div class="col-6 msg-align">
+                <p class="alert alert-success">
+                    <strong>Deleted Successfully!</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayVideo}">
+    <div class="modal-dialog" style="max-width: 626px;" role="document">
+        <div class="modal-content" style="width:660px;">
+            <div class="modal-header border-0">
+                <div class="col-12 mt-4 ml-2 mr-2 mb-5">
+                    <div class="modal-title"><b>{{videodetailPopUp?.webinarName}}</b>
+                        <button type="button" class="close mr-4" aria-label="Close"
+                            (click)="onCloseHandledVideo()"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <video controls id="video-control" poster="fa fa-play-circle" controlsList="nodownload" width="600" height="251"
+                        autoplay="autoplay" class="video-background-color  mt-4" type="video/mp4"
+                        src=".././assets/webinars/{{videodetailPopUp?.webinarUrl}}"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

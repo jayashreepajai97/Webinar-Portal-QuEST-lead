@@ -1,0 +1,69 @@
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1">S -->
+<div class="col-12 p-0" >
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header ">
+                <div class="navbar-header" (click)="navigate()">
+                    <a class="navbar-brand logo"></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="username">{{userName}}</div>
+                <div class="dropdownIcon " (click)="openDropdown()"></div> 
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="row ">
+    <div class="col-md-12">
+        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+                           class="ml-3" aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div>
+                        <div class="col-12 mb-2 ml-2 mr-2 mt-2"><img src="../../assets/profile_changePassword.svg" class="mr-2" />
+                            <span class="cursor-icon"routerLink="/dashboard/changePassword">Change Password</span></div>
+                            <div class="col-12 mb-3 ml-2 mr-2">
+                                <img src="../../assets/logout-icon.svg" class="mr-2" /><span  class="cursor-icon" routerLink="/login" (click)="logout()">Logout</span>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row p-0 m-0"  >
+    <div class="col-2 p-0" >
+        <mat-sidenav-container >
+            <mat-sidenav #sidenav opened mode="side" >
+                <div>
+                    <mat-list>
+                        <div class="menu1">
+                            <button mat-list-item (click)="set(0)" (click)="tab = 'Dashboard'"
+                                class=" {{(tab == 'Dashboard') ? 'active' : '' }} btn  mb-3 " >
+                                <span class="{{(tab == 'Dashboard') ? 'dashboard-icon-active' : 'dashboard-icon-active'}}"></span>Dashboard</button>
+                            <button mat-list-item (click)="set(1)" (click)="tab = 'Trainee'"
+                                class="{{(tab == 'Trainee') ? 'active' : '' }}  btn mb-3"><span
+                                class="{{(tab == 'Trainee') ? 'user-icon-active' : 'user-icon' }}">      
+                                </span>
+                                User</button>
+                            <button mat-list-item (click)="set(3)" (click)="tab = 'Webinar'"
+                                class="{{(tab ==  'Webinar' )? 'active' : '' }} btn mb-3"><span class="{{(tab ==  'Webinar' )? 'webinar-icon-active' : 'webinar-icon' }}"></span>
+                                Webinar</button>
+                            <button mat-list-item (click)="set(4)" (click)="tab = 'Reports'"
+                                class=" {{(tab == 'Reports') ? 'active' : '' }} btn  mb-3 "><span  class=" {{(tab == 'Reports') ? 'reports-icon-active' : 'reports-icon' }}"></span>
+                                Reports</button>
+                        </div>
+                    </mat-list>
+                </div>
+            </mat-sidenav>
+        </mat-sidenav-container>
+    </div>
+    <div class="col-10 background-layout">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

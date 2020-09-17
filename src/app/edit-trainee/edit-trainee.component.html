@@ -1,0 +1,71 @@
+<div class="row mr-2">
+    <div class="container">
+        <div class="header-font mt-5 mb-3">Edit User</div>
+    </div>
+    <div class="col-12">
+        <div class="card mr-5">
+            <div class="col-12 m-3">
+                <form [formGroup]='regForm' class="form-group-form" (ngSubmit)="uploadForm(regForm)" ngNativeValidate>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <div class="font-field mb-2">Name</div>
+                            <div>
+                                <input type="text" formControlName="name" [(ngModel)]="traineeName" class="form-control" required
+                                    maxlength="20">
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <div class="font-field mb-2">User Name (Email)</div>
+                            <div>
+                                <input type="email" formControlName="username" [(ngModel)]="traineeEmail"
+                                    class="form-control " disabled maxlength="40" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                  
+                        <div class="form-group col-6 ">
+                            <div class="font-field mb-2">Due Date</div>
+                            <div>
+                                <input type="date" formControlName="dueDate" [(ngModel)]="traineeDueDate"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar ml-3 mt-3">
+                        <div class="btn-group mr-3">
+                            <input type="submit" class="btn btn-primary" value="UPDATE" />
+                        </div>
+                        <div class="btn-group mr-3">
+                            <button type="button" class="btn btn-default border-primary" id="cancel-btn"
+                                routerLink="/dashboard/trainee">CANCEL</button>
+                        </div>
+                    </div>
+                    <div class="row py-2" *ngIf="showMsg">
+                        <div class="col-6 msg-align">
+                            <p class="alert alert-success">
+                                <strong>Updated Successfully!</strong>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
